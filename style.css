@@ -45,15 +45,15 @@ table {
 /*----- LAYOUT -----*/
 
 .grid {
-    width: 330px;
-    height: 310px;
+    /*width: 330px;*/
+    /*height: 310px;*/
     border: 3px solid white;
     z-index: 1;
     padding-bottom: 30px;
 }
 
 .wrapper {
-    width: 330px;
+    width: 520px;
     margin: 0 auto;
 }
 
@@ -62,9 +62,9 @@ table {
 }
 
 .pixel {
-    width: 100px;
-    height: 100px;
-    border: 3px solid black;
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
     float: left;
 }
 
