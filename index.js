@@ -8,6 +8,7 @@
 
     let grid = document.getElementsByClassName('grid')[0];
     let palette = document.getElementsByClassName('palette')[0];
+    let indicator = document.getElementsByClassName('indicator')[0];
 
     let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
@@ -42,21 +43,22 @@
 
 
 
-
+    //click on pixel, change color
     grid.addEventListener('click', function (event) {
       let target = event.target;
       if (target.classList.contains('pixel')) {
         target.style.backgroundColor = brush;
       }
     });
-
+    //click on palette
     palette.addEventListener('click', function (event) {
       let target = event.target;
       if (target.classList.contains('swatch')) {
         brush = target.style.backgroundColor;
-        console.log(brush);
+        indicator.style.backgroundColor = brush;
       }
     });
+
 
   });
 })();
