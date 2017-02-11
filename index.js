@@ -9,6 +9,8 @@
     let grid = document.getElementsByClassName('grid')[0];
     let palette = document.getElementsByClassName('palette')[0];
 
+    let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+
     let brush = '';
 
     function createPixels(numberOfRows, numberOfColumns, grid) {
@@ -26,7 +28,16 @@
 
     createPixels(numberOfRows, numberOfColumns, grid);
 
+    function createSwatches(colors, palette) {
+      for (var i = 0; i < colors.length; i++) {
+        let swatch = document.createElement('div');
+        swatch.className = 'swatch';
+        swatch.style.backgroundColor = colors[i];
+        palette.append(swatch);
+      }
+    }
 
+    createSwatches(colors, palette);
 
 
 
@@ -35,14 +46,14 @@
     grid.addEventListener('click', function (event) {
       let target = event.target;
       if (target.classList.contains('pixel')) {
-        target.className = 'pixel ' + brush;
+        target.style.backgroundColor = brush;
       }
     });
 
     palette.addEventListener('click', function (event) {
       let target = event.target;
       if (target.classList.contains('swatch')) {
-        brush = target.classList[1];
+        brush = target.style.backgroundColor;
         console.log(brush);
       }
     });
