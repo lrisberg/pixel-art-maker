@@ -3,22 +3,75 @@
     'use strict';
 
     // YOUR CODE HERE
-    let numberOfRows = 30;
-    let numberOfColumns = 30;
 
-    let wrapper = document.getElementsByClassName('wrapper')[0];
+                        // ----- INITIALIZATION ----- //
+
     let grid = document.getElementsByClassName('grid')[0];
     let indicatorPalette = document.getElementsByClassName('palette')[0];
     let indicator = document.getElementsByClassName('indicator')[0];
-    let palette = document.getElementsByClassName('palette')[1];
     let palettes = document.getElementsByClassName('palettes')[0];
-    let swatches = palette.getElementsByClassName('swatches')[0];
 
     let colorPicker = document.getElementsByTagName('input')[0];
 
-    let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
-
     let brush = '';
+
+    let numberOfRows = 30;
+    let numberOfColumns = 30;
+
+    let colors = {
+      rainbow: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
+      pastel: ['purple', 'blue', 'green', 'yellow', 'orange', 'red']
+    }
+
+                        // ----- CREATION ----- //
+
+    function createPalette() {
+      let paletteElement = document.createElement('div');
+      paletteElement.className = 'palette';
+      return paletteElement;
+    }
+
+    function createLabel(palette) {
+      let label = document.createElement('div');
+      label.innerText = palette;
+      label.className = 'label';
+      return label;
+    }
+
+    function createSwatches() {
+      let swatches = document.createElement('div');
+      swatches.className = 'swatches';
+      console.log("swatches: ", swatches);
+      return swatches;
+    }
+
+    function createSwatch(colorCode) {
+      let swatch = document.createElement('div');
+      swatch.className = 'swatch';
+      swatch.style.backgroundColor = colorCode;
+      return swatch;
+    }
+
+    function createPalettes(colors) {
+      for (let palette in colors) {
+        let paletteElement = createPalette();
+        palettes.append(paletteElement);
+
+        let labelElement = createLabel(palette);
+        paletteElement.append(labelElement);
+
+        let swatches = createSwatches();
+        console.log("swatches: ", swatches);
+        paletteElement.append(swatches);
+
+        let colorCodes = colors[palette];
+
+        for (let colorCode of colorCodes) {
+          let swatch = createSwatch(colorCode);
+          swatches.append(swatch);
+        }
+      }
+    }
 
     function createPixels(numberOfRows, numberOfColumns, grid) {
       for (var i = 0; i < numberOfRows; i++) {
@@ -40,27 +93,22 @@
     }
 
     createPixels(numberOfRows, numberOfColumns, grid);
+    createPalettes(colors);
 
-    function createSwatches(colors, swatches) {
-      for (var i = 0; i < colors.length; i++) {
-        let swatch = document.createElement('div');
-        swatch.className = 'swatch';
-        swatch.style.backgroundColor = colors[i];
-        swatches.append(swatch);
-      }
-    }
 
-    createSwatches(colors, swatches);
 
+                        // ----- EVENTS ----- //
+
+    let mouseDown = false;
+
+    //colorPicker
     colorPicker.addEventListener('change', function (event) {
       let pickedColor = event.target.value;
       brush = pickedColor;
       indicator.style.backgroundColor = pickedColor;
     })
 
-
-
-    //click on palette
+    //get color on swatch click
     palettes.addEventListener('click', function (event) {
       let target = event.target;
       if (target.classList.contains('swatch')) {
@@ -69,8 +117,7 @@
       }
     });
 
-    let mouseDown = false;
-    //mousedown
+    //begin changing pixel to selected color on mousedown
     grid.addEventListener('mousedown', function(event) {
       let target = event.target;
       if (target.classList.contains('pixel')) {
@@ -79,6 +126,7 @@
       }
     });
 
+    //stop adding colors on mouseup
     grid.addEventListener('mouseup', function(event) {
         mouseDown = false;
       });
