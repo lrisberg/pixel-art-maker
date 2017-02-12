@@ -13,15 +13,19 @@
 
     let colorPicker = document.getElementsByTagName('input')[0];
 
-    let brush = '';
-
     let numberOfRows = 30;
     let numberOfColumns = 30;
 
     let colors = {
       rainbow: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
-      pastel: ['purple', 'blue', 'green', 'yellow', 'orange', 'red']
+      greyscale: ['#101010', '#4c4c4c', '#999999', '#cccccc', '#dedede', 'white'],
+      pastel: ['#FFBFD6', '#FFC9BF', '#C4FFBF', '#BFFFCF', '#BFF9FF', '#BFDBFF'],
+      psychedelic: ['#fd00ff', '#fdff00', '#00ff38', '#00f9ff', '#3c00ff']
     }
+                    // ----- APPLICATION STATE ----- //
+
+    let brush = '';
+    let mouseDown = false;
 
                         // ----- CREATION ----- //
 
@@ -41,7 +45,6 @@
     function createSwatches() {
       let swatches = document.createElement('div');
       swatches.className = 'swatches';
-      console.log("swatches: ", swatches);
       return swatches;
     }
 
@@ -61,7 +64,6 @@
         paletteElement.append(labelElement);
 
         let swatches = createSwatches();
-        console.log("swatches: ", swatches);
         paletteElement.append(swatches);
 
         let colorCodes = colors[palette];
@@ -98,8 +100,6 @@
 
 
                         // ----- EVENTS ----- //
-
-    let mouseDown = false;
 
     //colorPicker
     colorPicker.addEventListener('change', function (event) {
