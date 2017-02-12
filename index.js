@@ -14,6 +14,8 @@
     let palettes = document.getElementsByClassName('palettes')[0];
     let swatches = palette.getElementsByClassName('swatches')[0];
 
+    let colorPicker = document.getElementsByTagName('input')[0];
+
     let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
     let brush = '';
@@ -28,7 +30,6 @@
           pixel.className = 'pixel';
           pixel.addEventListener('mouseenter', function(event) {
             let target = event.target;
-            console.log(target);
             if (mouseDown === true && target.classList.contains('pixel')) {
               target.style.backgroundColor = brush;
             }
@@ -51,7 +52,11 @@
 
     createSwatches(colors, swatches);
 
-
+    colorPicker.addEventListener('change', function (event) {
+      let pickedColor = event.target.value;
+      brush = pickedColor;
+      indicator.style.backgroundColor = pickedColor;
+    })
 
 
 
@@ -71,13 +76,11 @@
       if (target.classList.contains('pixel')) {
         target.style.backgroundColor = brush;
         mouseDown = true;
-        console.log(mouseDown);
       }
     });
 
     grid.addEventListener('mouseup', function(event) {
         mouseDown = false;
-        console.log(mouseDown);
       });
 
 
