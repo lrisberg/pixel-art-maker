@@ -1,16 +1,12 @@
 /*----- LAYOUT -----*/
 
 .grid {
-    /*width: 330px;*/
-    /*height: 310px;*/
-    border: 3px solid white;
-    z-index: 1;
+    width: 660px;
+    height: 660px;
     padding-bottom: 30px;
-}
-
-.wrapper {
-    width: 700px;
-    margin: 0 auto;
+    padding-left: 100px;
+    padding-top: 25px;
+    float: left;
 }
 
 .row {
@@ -24,13 +20,37 @@
     float: left;
 }
 
+.palettes {
+  width: 660px;
+  height: 660px;
+  float: left;
+}
+
+.palette {
+  padding-bottom: 10px;
+  padding-right: 100px;
+  padding-top: 25px;
+}
+
+.swatches {
+  text-align: center;
+  padding-top: 5px;
+}
+
+.label {
+  font-family: '8BITWONDERNominal';
+  margin: auto;
+  text-align: center;
+}
+
 .swatch {
     width: 40px;
     height: 40px;
     border: 1px solid grey;
     border-radius: 50%;
-    float: left;
+    display: inline-block;
     margin: 3px;
+    text-align: center;
 }
 
 .indicator {
@@ -38,7 +58,9 @@
   height: 40px;
   border: 1px solid grey;
   border-radius: 50%;
-  float: right;
+  display: inline-block;
+  margin: 3px;
+  text-align: center;
 }
 
 /*----- STYLE -----*/
@@ -49,4 +71,5 @@ h1 {
    font-style: normal;
    font-size: 50px;
    text-align: center;
+   padding-top: 20px;
 }

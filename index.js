@@ -6,9 +6,12 @@
     let numberOfRows = 30;
     let numberOfColumns = 30;
 
+    let wrapper = document.getElementsByClassName('wrapper')[0];
     let grid = document.getElementsByClassName('grid')[0];
-    let palette = document.getElementsByClassName('palette')[0];
+    let indicatorPalette = document.getElementsByClassName('palette')[0];
     let indicator = document.getElementsByClassName('indicator')[0];
+    let palette = document.getElementsByClassName('palette')[1];
+    let swatches = palette.getElementsByClassName('swatches')[0];
 
     let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
@@ -29,16 +32,16 @@
 
     createPixels(numberOfRows, numberOfColumns, grid);
 
-    function createSwatches(colors, palette) {
+    function createSwatches(colors, swatches) {
       for (var i = 0; i < colors.length; i++) {
         let swatch = document.createElement('div');
         swatch.className = 'swatch';
         swatch.style.backgroundColor = colors[i];
-        palette.append(swatch);
+        swatches.append(swatch);
       }
     }
 
-    createSwatches(colors, palette);
+    createSwatches(colors, swatches);
 
 
 
