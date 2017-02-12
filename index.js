@@ -11,6 +11,7 @@
     let indicatorPalette = document.getElementsByClassName('palette')[0];
     let indicator = document.getElementsByClassName('indicator')[0];
     let palette = document.getElementsByClassName('palette')[1];
+    let palettes = document.getElementsByClassName('palettes')[0];
     let swatches = palette.getElementsByClassName('swatches')[0];
 
     let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
@@ -25,6 +26,13 @@
         for (var j = 0; j < numberOfColumns; j++) {
           let pixel = document.createElement('div');
           pixel.className = 'pixel';
+          pixel.addEventListener('mouseenter', function(event) {
+            let target = event.target;
+            console.log(target);
+            if (mouseDown === true && target.classList.contains('pixel')) {
+              target.style.backgroundColor = brush;
+            }
+          })
           row.append(pixel);
         }
       }
@@ -46,21 +54,31 @@
 
 
 
-    //click on pixel, change color
-    grid.addEventListener('click', function (event) {
-      let target = event.target;
-      if (target.classList.contains('pixel')) {
-        target.style.backgroundColor = brush;
-      }
-    });
+
     //click on palette
-    palette.addEventListener('click', function (event) {
+    palettes.addEventListener('click', function (event) {
       let target = event.target;
       if (target.classList.contains('swatch')) {
         brush = target.style.backgroundColor;
         indicator.style.backgroundColor = brush;
       }
     });
+
+    let mouseDown = false;
+    //mousedown
+    grid.addEventListener('mousedown', function(event) {
+      let target = event.target;
+      if (target.classList.contains('pixel')) {
+        target.style.backgroundColor = brush;
+        mouseDown = true;
+        console.log(mouseDown);
+      }
+    });
+
+    grid.addEventListener('mouseup', function(event) {
+        mouseDown = false;
+        console.log(mouseDown);
+      });
 
 
   });
